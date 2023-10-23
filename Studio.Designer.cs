@@ -40,9 +40,7 @@
             this.tabConfig = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ElementName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ElementExtractName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewElementList = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
@@ -66,12 +64,25 @@
             this.moveIndexBufferRelatedFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.openFileDialogJson = new System.Windows.Forms.OpenFileDialog();
+            this.ElementOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SemanticName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExtractSemanticName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SemanticIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OutputSemanticIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Format = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InputSlot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InputSlotClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InstanceDataStepRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ByteWidth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExtractVertexBufferSlot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExtractTopology = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.tabConfig.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewElementList)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -162,7 +173,7 @@
             this.tabConfig.Location = new System.Drawing.Point(4, 22);
             this.tabConfig.Name = "tabConfig";
             this.tabConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConfig.Size = new System.Drawing.Size(792, 424);
+            this.tabConfig.Size = new System.Drawing.Size(787, 475);
             this.tabConfig.TabIndex = 0;
             this.tabConfig.Text = "Mod Making";
             this.tabConfig.UseVisualStyleBackColor = true;
@@ -177,42 +188,43 @@
             this.tabControl2.Location = new System.Drawing.Point(3, 27);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(786, 394);
+            this.tabControl2.Size = new System.Drawing.Size(781, 445);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridView1);
+            this.tabPage2.Controls.Add(this.dataGridViewElementList);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(778, 368);
+            this.tabPage2.Size = new System.Drawing.Size(773, 419);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "D3D11 Elements";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dataGridViewElementList
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ElementName,
-            this.ElementExtractName});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(772, 362);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // ElementName
-            // 
-            this.ElementName.HeaderText = "ElementName";
-            this.ElementName.Name = "ElementName";
-            // 
-            // ElementExtractName
-            // 
-            this.ElementExtractName.HeaderText = "ElementExtractName";
-            this.ElementExtractName.Name = "ElementExtractName";
-            this.ElementExtractName.Width = 120;
+            this.dataGridViewElementList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewElementList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ElementOrder,
+            this.SemanticName,
+            this.ExtractSemanticName,
+            this.SemanticIndex,
+            this.OutputSemanticIndex,
+            this.Format,
+            this.InputSlot,
+            this.InputSlotClass,
+            this.InstanceDataStepRate,
+            this.ByteWidth,
+            this.ExtractVertexBufferSlot,
+            this.ExtractTopology,
+            this.Category});
+            this.dataGridViewElementList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewElementList.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewElementList.Name = "dataGridViewElementList";
+            this.dataGridViewElementList.Size = new System.Drawing.Size(767, 413);
+            this.dataGridViewElementList.TabIndex = 0;
+            this.dataGridViewElementList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewElementList_CellContentClick);
             // 
             // tabPage4
             // 
@@ -273,7 +285,7 @@
             this.runToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(3, 3);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(786, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(781, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -389,18 +401,108 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 450);
+            this.tabControl1.Size = new System.Drawing.Size(795, 501);
             this.tabControl1.TabIndex = 1;
             // 
             // openFileDialogJson
             // 
             this.openFileDialogJson.Filter = "Json Configs|*.json";
             // 
+            // ElementOrder
+            // 
+            this.ElementOrder.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ElementOrder.HeaderText = "ElementOrder";
+            this.ElementOrder.Name = "ElementOrder";
+            this.ElementOrder.Width = 96;
+            // 
+            // SemanticName
+            // 
+            this.SemanticName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.SemanticName.HeaderText = "SemanticName";
+            this.SemanticName.Name = "SemanticName";
+            this.SemanticName.Width = 104;
+            // 
+            // ExtractSemanticName
+            // 
+            this.ExtractSemanticName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ExtractSemanticName.HeaderText = "ExtractSemanticName";
+            this.ExtractSemanticName.Name = "ExtractSemanticName";
+            this.ExtractSemanticName.Width = 137;
+            // 
+            // SemanticIndex
+            // 
+            this.SemanticIndex.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.SemanticIndex.HeaderText = "SemanticIndex";
+            this.SemanticIndex.Name = "SemanticIndex";
+            this.SemanticIndex.Width = 102;
+            // 
+            // OutputSemanticIndex
+            // 
+            this.OutputSemanticIndex.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.OutputSemanticIndex.HeaderText = "OutputSemanticIndex";
+            this.OutputSemanticIndex.Name = "OutputSemanticIndex";
+            this.OutputSemanticIndex.Width = 134;
+            // 
+            // Format
+            // 
+            this.Format.HeaderText = "Format";
+            this.Format.Name = "Format";
+            this.Format.Width = 150;
+            // 
+            // InputSlot
+            // 
+            this.InputSlot.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.InputSlot.HeaderText = "InputSlot";
+            this.InputSlot.Name = "InputSlot";
+            this.InputSlot.Width = 74;
+            // 
+            // InputSlotClass
+            // 
+            this.InputSlotClass.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.InputSlotClass.HeaderText = "InputSlotClass";
+            this.InputSlotClass.Name = "InputSlotClass";
+            this.InputSlotClass.Width = 99;
+            // 
+            // InstanceDataStepRate
+            // 
+            this.InstanceDataStepRate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.InstanceDataStepRate.HeaderText = "InstanceDataStepRate";
+            this.InstanceDataStepRate.Name = "InstanceDataStepRate";
+            this.InstanceDataStepRate.Width = 141;
+            // 
+            // ByteWidth
+            // 
+            this.ByteWidth.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ByteWidth.HeaderText = "ByteWidth";
+            this.ByteWidth.Name = "ByteWidth";
+            this.ByteWidth.Width = 81;
+            // 
+            // ExtractVertexBufferSlot
+            // 
+            this.ExtractVertexBufferSlot.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ExtractVertexBufferSlot.HeaderText = "ExtractVertexBufferSlot";
+            this.ExtractVertexBufferSlot.Name = "ExtractVertexBufferSlot";
+            this.ExtractVertexBufferSlot.Width = 141;
+            // 
+            // ExtractTopology
+            // 
+            this.ExtractTopology.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ExtractTopology.HeaderText = "ExtractTopology";
+            this.ExtractTopology.Name = "ExtractTopology";
+            this.ExtractTopology.Width = 109;
+            // 
+            // Category
+            // 
+            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            this.Category.Width = 74;
+            // 
             // Studio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(795, 501);
             this.Controls.Add(this.tabControl1);
             this.Name = "Studio";
             this.Text = "Form1";
@@ -413,7 +515,7 @@
             this.tabConfig.PerformLayout();
             this.tabControl2.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewElementList)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
@@ -458,10 +560,21 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ElementName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ElementExtractName;
+        private System.Windows.Forms.DataGridView dataGridViewElementList;
         private System.Windows.Forms.OpenFileDialog openFileDialogJson;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ElementOrder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SemanticName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExtractSemanticName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SemanticIndex;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OutputSemanticIndex;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Format;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InputSlot;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InputSlotClass;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InstanceDataStepRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ByteWidth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExtractVertexBufferSlot;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExtractTopology;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
     }
 }
 

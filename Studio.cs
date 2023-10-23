@@ -37,23 +37,55 @@ namespace _3DmigotoModStudio
             DialogResult result = openFileDialogJson.ShowDialog();
 
             if (result == DialogResult.OK)
-            {
+            {   
+                //get json path
                 string selectedFilePath = openFileDialogJson.FileName;
-                string fileName = System.IO.Path.GetFileName(selectedFilePath);
-                // 读取 JSON 文件内容
-                string json = File.ReadAllText(fileName);
+                //read json file
+                string configJson = File.ReadAllText(selectedFilePath);
+                //parse json file
+                JObject configJsonObject = JObject.Parse(configJson);
 
-                // 使用 JObject 解析 JSON
-                JObject jObject = JObject.Parse(json);
+                JObject elementListObject = (JObject)configJsonObject["ElementList"];
+                List<JObject> objectList = elementListObject.Properties().Select(p => (JObject)p.Value).ToList();
 
-                // 通过键访问值
-                string value = (string)jObject["key"];
+                // clean all previous rows because we need a new config.
+                dataGridViewElementList.Rows.Clear();
+
+                // here can't use DataSource because we make sure we can modify it after we add it into 
+                // dataGridView, if you try to use DataSource it can not be modified later.
+                foreach (JObject obj in objectList)
+                {   
+                    // we turn it to object first so we can easily add it into DataGridView
+                    D3D11ElementClass element = obj.ToObject<D3D11ElementClass>();
+
+                    dataGridViewElementList.Rows.Add(
+                        element.ElementOrder,
+                        element.SemanticName,
+                        element.ExtractSemanticName,
+                        element.SemanticIndex,
+                        element.OutputSemanticIndex,
+                        element.Format,
+                        element.InputSlot,
+                        element.InputSlotClass,
+                        element.InstanceDataStepRate,
+                        element.ByteWidth,
+                        element.ExtractVertexBufferSlot,
+                        element.ExtractTopology,
+                        element.Category
+                        );
+                    
+                }
+
+                
+
 
             }
-            
 
         }
 
+        private void dataGridViewElementList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
     }
 }
