@@ -1,6 +1,6 @@
 ﻿namespace _3DmigotoModStudio
 {
-    partial class Form1
+    partial class Studio
     {
         /// <summary>
         /// Required designer variable.
@@ -29,17 +29,25 @@
         private void InitializeComponent()
         {
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabConfig = new System.Windows.Forms.TabPage();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.runToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tryExtractibvbFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.standardFormattingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabConfig = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ElementName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ElementExtractName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,20 +64,18 @@
             this.generateIndexBufferSkipModByFirstIndexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.moveIndexBufferRelatedFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.runToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tryExtractibvbFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.standardFormattingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.openFileDialogJson = new System.Windows.Forms.OpenFileDialog();
             this.tabPage3.SuspendLayout();
+            this.menuStrip2.SuspendLayout();
             this.tabConfig.SuspendLayout();
-            this.tabControl1.SuspendLayout();
             this.tabControl2.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.menuStrip2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage3
@@ -83,7 +89,70 @@
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Shader Editor";
             this.tabPage3.UseVisualStyleBackColor = true;
-            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Location = new System.Drawing.Point(3, 27);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(786, 394);
+            this.richTextBox1.TabIndex = 1;
+            this.richTextBox1.Text = "";
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.BackColor = System.Drawing.Color.Gray;
+            this.menuStrip2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem1,
+            this.editToolStripMenuItem,
+            this.settingsToolStripMenuItem,
+            this.runToolStripMenuItem1});
+            this.menuStrip2.Location = new System.Drawing.Point(3, 3);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(786, 24);
+            this.menuStrip2.TabIndex = 0;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // fileToolStripMenuItem1
+            // 
+            this.fileToolStripMenuItem1.BackColor = System.Drawing.Color.Gray;
+            this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
+            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(38, 20);
+            this.fileToolStripMenuItem1.Text = "File";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // runToolStripMenuItem1
+            // 
+            this.runToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tryExtractibvbFileToolStripMenuItem,
+            this.standardFormattingToolStripMenuItem});
+            this.runToolStripMenuItem1.Name = "runToolStripMenuItem1";
+            this.runToolStripMenuItem1.Size = new System.Drawing.Size(41, 20);
+            this.runToolStripMenuItem1.Text = "Run";
+            // 
+            // tryExtractibvbFileToolStripMenuItem
+            // 
+            this.tryExtractibvbFileToolStripMenuItem.Name = "tryExtractibvbFileToolStripMenuItem";
+            this.tryExtractibvbFileToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.tryExtractibvbFileToolStripMenuItem.Text = "Try Extract .ib and .vb File";
+            // 
+            // standardFormattingToolStripMenuItem
+            // 
+            this.standardFormattingToolStripMenuItem.Name = "standardFormattingToolStripMenuItem";
+            this.standardFormattingToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.standardFormattingToolStripMenuItem.Text = "Standard Formatting";
             // 
             // tabConfig
             // 
@@ -97,17 +166,6 @@
             this.tabConfig.TabIndex = 0;
             this.tabConfig.Text = "Mod Making";
             this.tabConfig.UseVisualStyleBackColor = true;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabConfig);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 450);
-            this.tabControl1.TabIndex = 1;
             // 
             // tabControl2
             // 
@@ -124,6 +182,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.dataGridView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -131,6 +190,29 @@
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "D3D11 Elements";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ElementName,
+            this.ElementExtractName});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(772, 362);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // ElementName
+            // 
+            this.ElementName.HeaderText = "ElementName";
+            this.ElementName.Name = "ElementName";
+            // 
+            // ElementExtractName
+            // 
+            this.ElementExtractName.HeaderText = "ElementExtractName";
+            this.ElementExtractName.Name = "ElementExtractName";
+            this.ElementExtractName.Width = 120;
             // 
             // tabPage4
             // 
@@ -153,6 +235,15 @@
             this.tabPage5.Text = "Run Output";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // richTextBox3
+            // 
+            this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox3.Location = new System.Drawing.Point(3, 3);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.Size = new System.Drawing.Size(772, 362);
+            this.richTextBox3.TabIndex = 0;
+            this.richTextBox3.Text = "";
+            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.richTextBox2);
@@ -164,39 +255,14 @@
             this.tabPage1.Text = "Output ini File";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // menuStrip2
+            // richTextBox2
             // 
-            this.menuStrip2.BackColor = System.Drawing.Color.Gray;
-            this.menuStrip2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem1,
-            this.editToolStripMenuItem,
-            this.settingsToolStripMenuItem,
-            this.runToolStripMenuItem1});
-            this.menuStrip2.Location = new System.Drawing.Point(3, 3);
-            this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(786, 24);
-            this.menuStrip2.TabIndex = 0;
-            this.menuStrip2.Text = "menuStrip2";
-            // 
-            // fileToolStripMenuItem1
-            // 
-            this.fileToolStripMenuItem1.BackColor = System.Drawing.Color.Gray;
-            this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
-            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem1.Text = "File";
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.settingsToolStripMenuItem.Text = "Settings";
+            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox2.Location = new System.Drawing.Point(3, 3);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(772, 362);
+            this.richTextBox2.TabIndex = 0;
+            this.richTextBox2.Text = "";
             // 
             // menuStrip1
             // 
@@ -226,31 +292,32 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.newToolStripMenuItem.Text = "New";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             // 
             // cleanToolStripMenuItem
             // 
             this.cleanToolStripMenuItem.Name = "cleanToolStripMenuItem";
-            this.cleanToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cleanToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.cleanToolStripMenuItem.Text = "Clean";
             // 
             // runToolStripMenuItem
@@ -314,76 +381,44 @@
             this.moveIndexBufferRelatedFilesToolStripMenuItem.Size = new System.Drawing.Size(333, 22);
             this.moveIndexBufferRelatedFilesToolStripMenuItem.Text = "Move Index Buffer Related Files";
             // 
-            // runToolStripMenuItem1
+            // tabControl1
             // 
-            this.runToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tryExtractibvbFileToolStripMenuItem,
-            this.standardFormattingToolStripMenuItem});
-            this.runToolStripMenuItem1.Name = "runToolStripMenuItem1";
-            this.runToolStripMenuItem1.Size = new System.Drawing.Size(40, 20);
-            this.runToolStripMenuItem1.Text = "Run";
+            this.tabControl1.Controls.Add(this.tabConfig);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(800, 450);
+            this.tabControl1.TabIndex = 1;
             // 
-            // tryExtractibvbFileToolStripMenuItem
+            // openFileDialogJson
             // 
-            this.tryExtractibvbFileToolStripMenuItem.Name = "tryExtractibvbFileToolStripMenuItem";
-            this.tryExtractibvbFileToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.tryExtractibvbFileToolStripMenuItem.Text = "Try Extract .ib and .vb File";
-            this.tryExtractibvbFileToolStripMenuItem.Click += new System.EventHandler(this.tryExtractibvbFileToolStripMenuItem_Click);
+            this.openFileDialogJson.Filter = "Json Configs|*.json";
             // 
-            // standardFormattingToolStripMenuItem
-            // 
-            this.standardFormattingToolStripMenuItem.Name = "standardFormattingToolStripMenuItem";
-            this.standardFormattingToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.standardFormattingToolStripMenuItem.Text = "Standard Formatting";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(3, 27);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(786, 394);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox2.Location = new System.Drawing.Point(3, 3);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(772, 362);
-            this.richTextBox2.TabIndex = 0;
-            this.richTextBox2.Text = "";
-            // 
-            // richTextBox3
-            // 
-            this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox3.Location = new System.Drawing.Point(3, 3);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(772, 362);
-            this.richTextBox3.TabIndex = 0;
-            this.richTextBox3.Text = "";
-            // 
-            // Form1
+            // Studio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
+            this.Name = "Studio";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.tabConfig.ResumeLayout(false);
-            this.tabConfig.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.tabConfig.ResumeLayout(false);
+            this.tabConfig.PerformLayout();
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -423,6 +458,10 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ElementName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ElementExtractName;
+        private System.Windows.Forms.OpenFileDialog openFileDialogJson;
     }
 }
 
