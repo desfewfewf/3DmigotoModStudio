@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _3DmigotoModStudio
 {
-    public class D3D11ElementClass
+    internal class D3D11ElementClass
     {
         public int ElementOrder {  get; set; }
         public string SemanticName {  get; set; }

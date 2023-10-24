@@ -37,7 +37,7 @@ namespace _3DmigotoModStudio
             DialogResult result = openFileDialogJson.ShowDialog();
 
             if (result == DialogResult.OK)
-            {   
+            {
                 //get json path
                 string selectedFilePath = openFileDialogJson.FileName;
                 //read json file
@@ -54,7 +54,7 @@ namespace _3DmigotoModStudio
                 // here can't use DataSource because we make sure we can modify it after we add it into 
                 // dataGridView, if you try to use DataSource it can not be modified later.
                 foreach (JObject obj in objectList)
-                {   
+                {
                     // we turn it to object first so we can easily add it into DataGridView
                     D3D11ElementClass element = obj.ToObject<D3D11ElementClass>();
 
@@ -73,17 +73,23 @@ namespace _3DmigotoModStudio
                         element.ExtractTopology,
                         element.Category
                         );
-                    
+
                 }
-
-                
-
-
             }
 
         }
 
-        private void dataGridViewElementList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void textBox16_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox12_CheckedChanged(object sender, EventArgs e)
         {
 
         }
