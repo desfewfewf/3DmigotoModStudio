@@ -30,6 +30,24 @@ namespace _3DmigotoModStudio
             this.Text = "3Dmigoto Mod Studio " + version.ToString();
         }
 
+        //Log output info to RunOutputRichText
+        public void LogOutput(string outputText, Color textColor= default)
+        {
+            if (textColor == default)
+            {
+                textColor = Color.Lime;
+            }
+            // log the length when we add ne content
+            int startPosition = RunOutputRichText.TextLength;
+            RunOutputRichText.AppendText(outputText);
+            RunOutputRichText.AppendText(Environment.NewLine);
+
+            int endPosition = RunOutputRichText.TextLength;
+
+            RunOutputRichText.Select(startPosition, endPosition - startPosition);
+            RunOutputRichText.SelectionColor = textColor;
+        }
+
         //Open a json file to read configs.
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -50,6 +68,9 @@ namespace _3DmigotoModStudio
 
                 // clean all previous rows because we need a new config.
                 dataGridViewElementList.Rows.Clear();
+                LogOutput("Reading configs from: " + selectedFilePath);
+                LogOutput("Reading D3D11 Elements Setting: ");
+                LogOutput(elementListObject.ToString());
 
                 // here can't use DataSource because we make sure we can modify it after we add it into 
                 // dataGridView, if you try to use DataSource it can not be modified later.
@@ -90,6 +111,11 @@ namespace _3DmigotoModStudio
         }
 
         private void checkBox12_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox3_TextChanged(object sender, EventArgs e)
         {
 
         }
