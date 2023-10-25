@@ -81,11 +81,11 @@
             this.CheckBoxBlendDrawCategory = new System.Windows.Forms.CheckBox();
             this.ComboBoxGameEngine = new System.Windows.Forms.ComboBox();
             this.TextBoxVertexShaderCheckSlots = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.ButtonSelectFrameAnalysisFolder = new System.Windows.Forms.Button();
             this.CheckBoxGenerateVertexShaderCheck = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ButtonSelectOutputFolder = new System.Windows.Forms.Button();
             this.TextBoxBlendOriginalCategory = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ButtonSelectLoaderFolder = new System.Windows.Forms.Button();
             this.TextBoxBlendDrawCategory = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TextBoxAnimationVertexShaderHash = new System.Windows.Forms.TextBox();
@@ -132,6 +132,8 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.exportToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogJson = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialogJson = new System.Windows.Forms.SaveFileDialog();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tabPage3.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.tabConfig.SuspendLayout();
@@ -599,11 +601,11 @@
             this.groupBox1.Controls.Add(this.CheckBoxBlendDrawCategory);
             this.groupBox1.Controls.Add(this.ComboBoxGameEngine);
             this.groupBox1.Controls.Add(this.TextBoxVertexShaderCheckSlots);
-            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.ButtonSelectFrameAnalysisFolder);
             this.groupBox1.Controls.Add(this.CheckBoxGenerateVertexShaderCheck);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.ButtonSelectOutputFolder);
             this.groupBox1.Controls.Add(this.TextBoxBlendOriginalCategory);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.ButtonSelectLoaderFolder);
             this.groupBox1.Controls.Add(this.TextBoxBlendDrawCategory);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.TextBoxAnimationVertexShaderHash);
@@ -676,14 +678,14 @@
             this.TextBoxVertexShaderCheckSlots.Size = new System.Drawing.Size(156, 20);
             this.TextBoxVertexShaderCheckSlots.TabIndex = 14;
             // 
-            // button3
+            // ButtonSelectFrameAnalysisFolder
             // 
-            this.button3.Location = new System.Drawing.Point(662, 75);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Select";
-            this.button3.UseVisualStyleBackColor = true;
+            this.ButtonSelectFrameAnalysisFolder.Location = new System.Drawing.Point(662, 75);
+            this.ButtonSelectFrameAnalysisFolder.Name = "ButtonSelectFrameAnalysisFolder";
+            this.ButtonSelectFrameAnalysisFolder.Size = new System.Drawing.Size(75, 23);
+            this.ButtonSelectFrameAnalysisFolder.TabIndex = 10;
+            this.ButtonSelectFrameAnalysisFolder.Text = "Select";
+            this.ButtonSelectFrameAnalysisFolder.UseVisualStyleBackColor = true;
             // 
             // CheckBoxGenerateVertexShaderCheck
             // 
@@ -696,14 +698,14 @@
             this.CheckBoxGenerateVertexShaderCheck.UseVisualStyleBackColor = true;
             this.CheckBoxGenerateVertexShaderCheck.CheckedChanged += new System.EventHandler(this.CheckBoxGenerateVertexShaderCheck_CheckedChanged);
             // 
-            // button2
+            // ButtonSelectOutputFolder
             // 
-            this.button2.Location = new System.Drawing.Point(662, 47);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Select";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ButtonSelectOutputFolder.Location = new System.Drawing.Point(662, 47);
+            this.ButtonSelectOutputFolder.Name = "ButtonSelectOutputFolder";
+            this.ButtonSelectOutputFolder.Size = new System.Drawing.Size(75, 23);
+            this.ButtonSelectOutputFolder.TabIndex = 9;
+            this.ButtonSelectOutputFolder.Text = "Select";
+            this.ButtonSelectOutputFolder.UseVisualStyleBackColor = true;
             // 
             // TextBoxBlendOriginalCategory
             // 
@@ -712,14 +714,15 @@
             this.TextBoxBlendOriginalCategory.Size = new System.Drawing.Size(70, 20);
             this.TextBoxBlendOriginalCategory.TabIndex = 11;
             // 
-            // button1
+            // ButtonSelectLoaderFolder
             // 
-            this.button1.Location = new System.Drawing.Point(662, 21);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Select";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonSelectLoaderFolder.Location = new System.Drawing.Point(662, 21);
+            this.ButtonSelectLoaderFolder.Name = "ButtonSelectLoaderFolder";
+            this.ButtonSelectLoaderFolder.Size = new System.Drawing.Size(75, 23);
+            this.ButtonSelectLoaderFolder.TabIndex = 8;
+            this.ButtonSelectLoaderFolder.Text = "Select";
+            this.ButtonSelectLoaderFolder.UseVisualStyleBackColor = true;
+            this.ButtonSelectLoaderFolder.Click += new System.EventHandler(this.ButtonSelectLoaderFolder_Click);
             // 
             // TextBoxBlendDrawCategory
             // 
@@ -920,6 +923,7 @@
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
@@ -933,12 +937,14 @@
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // cleanToolStripMenuItem
             // 
@@ -1099,6 +1105,13 @@
             // 
             this.openFileDialogJson.Filter = "Json Configs|*.json";
             // 
+            // saveFileDialogJson
+            // 
+            this.saveFileDialogJson.Filter = "Json Configs|*.json";
+            // 
+            // folderBrowserDialog1
+            // 
+            // 
             // Studio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1202,9 +1215,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox TextBoxSkipIndexBufferHashList;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ButtonSelectFrameAnalysisFolder;
+        private System.Windows.Forms.Button ButtonSelectOutputFolder;
+        private System.Windows.Forms.Button ButtonSelectLoaderFolder;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ComboBox ComboBoxTangentRecalculate;
         private System.Windows.Forms.CheckBox checkBox3;
@@ -1243,6 +1256,8 @@
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogJson;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 

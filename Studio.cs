@@ -20,6 +20,9 @@ namespace _3DmigotoModStudio
     {
         List<D3D11ElementAttributes> D3D11ElementAttributesList;
         ConfigAttributes configAttributes;
+        string runPath;
+        string defaultConfigPath;
+
         public Studio()
         {
             InitializeComponent();
@@ -28,12 +31,14 @@ namespace _3DmigotoModStudio
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.Icon = Properties.Resources.NicoLove;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             this.Text = "3Dmigoto Mod Studio " + version.ToString();
             initializeConfig();
-            string runPath = Application.StartupPath.ToString() + "\\";
-            string defaultConfigPath = runPath + "config.json";
+            runPath = Application.StartupPath.ToString() + "\\";
+            defaultConfigPath = runPath + "Config.json";
+
             if (File.Exists(defaultConfigPath))
             {
                 readAndSetConfig(defaultConfigPath);
@@ -83,10 +88,7 @@ namespace _3DmigotoModStudio
             ComboBoxGameEngine.SelectedIndex = -1;
 
             TextBoxDrawIndexBufferHash.Text = string.Empty;
-            TextBoxDrawIndexBufferHash.Enabled = false;
-
             TextBoxModName.Text = string.Empty;
-            TextBoxModName.Enabled = false;
 
             TextBoxVertexShaderCheckSlots.Text = string.Empty;
             TextBoxVertexShaderCheckSlots.Enabled = false;
@@ -138,6 +140,7 @@ namespace _3DmigotoModStudio
 
 
         }
+        
 
         public void readAndSetConfig(string jsonConfigFilePath)
         {
@@ -150,8 +153,9 @@ namespace _3DmigotoModStudio
             JObject configJsonObject = JObject.Parse(configJson);
 
             TabControlModMaking.SelectedIndex = 0;
-            JObject elementListObject = (JObject)configJsonObject["ElementList"];
-            List<JObject> objectList = elementListObject.Properties().Select(p => (JObject)p.Value).ToList();
+
+            // get ElementList JArray
+            JArray elementList = (JArray)configJsonObject["ElementList"];
 
             // clean all previous rows because we need a new config.
             dataGridViewElementList.Rows.Clear();
@@ -160,11 +164,11 @@ namespace _3DmigotoModStudio
 
             // here can't use DataSource because we make sure we can modify it after we add it into 
             // dataGridView, if you try to use DataSource it can not be modified later.
-            foreach (JObject obj in objectList)
+            foreach (JObject obj in elementList)
             {
                 // we turn it to object first so we can easily add it into DataGridView
                 D3D11ElementAttributes d3d11ElementAttributes = obj.ToObject<D3D11ElementAttributes>();
-                D3D11ElementAttributesList.Append(d3d11ElementAttributes);
+                D3D11ElementAttributesList.Add(d3d11ElementAttributes);
 
                 dataGridViewElementList.Rows.Add(
                     d3d11ElementAttributes.ElementOrder,
@@ -187,7 +191,7 @@ namespace _3DmigotoModStudio
             // Then we log it into output, comments these lines if you don't like it.
             LogOutput("Reading configs from: " + jsonConfigFilePath);
             LogOutput("Reading D3D11 Elements Setting: ");
-            LogOutput(elementListObject.ToString());
+            LogOutput(elementList.ToString());
 
             TabControlModMaking.SelectedIndex = 1;
             // Now we read config and set Config tab's every single part.
@@ -215,44 +219,30 @@ namespace _3DmigotoModStudio
             TextBoxModName.Text = ModName;
             LogOutput("ModName: " + ModName);
 
-            bool GenerateVertexShaderCheck = (bool)configJsonObject["GenerateVertexShaderCheck"];
-            LogOutput("GenerateVertexShaderCheck: " + GenerateVertexShaderCheck);
 
-            List<string> VertexShaderCheckSlots = configJsonObject["VertexShaderCheckSlots"].ToObject<List<string>>();
-            string VertexShaderCheckSlotsString = "";
-            if (VertexShaderCheckSlots.Count != 0)
-            {
-                CheckBoxGenerateVertexShaderCheck.Checked = true;
-                foreach (string checkSlot in VertexShaderCheckSlots)
-                {
-                    VertexShaderCheckSlotsString += checkSlot + ",";
-                }
-                VertexShaderCheckSlotsString = VertexShaderCheckSlotsString.Substring(0, VertexShaderCheckSlotsString.Length - 1);
-                TextBoxVertexShaderCheckSlots.Text = VertexShaderCheckSlotsString;
-                LogOutput("VertexShaderCheckSlots: " + VertexShaderCheckSlotsString);
-            }
-            else
+            string VertexShaderCheckSlotsString = (string)configJsonObject["VertexShaderCheckSlots"];
+            if (string.IsNullOrEmpty(VertexShaderCheckSlotsString))
             {
                 CheckBoxGenerateVertexShaderCheck.Checked = false;
             }
-
-
-            List<string> SkipIndexBufferHashList = configJsonObject["SkipIndexBufferHashList"].ToObject<List<string>>();
-            string SkipIndexBufferHashListString = "";
-            if (SkipIndexBufferHashList.Count != 0)
+            else
             {
-                CheckBoxSkipIndexBufferHashList.Checked = true;
-                foreach (string skipIB in SkipIndexBufferHashList)
-                {
-                    SkipIndexBufferHashListString += skipIB + ",";
-                }
-                SkipIndexBufferHashListString = SkipIndexBufferHashListString.Substring(0, SkipIndexBufferHashListString.Length - 1);
-                TextBoxSkipIndexBufferHashList.Text = SkipIndexBufferHashListString;
-                LogOutput("SkipIndexBufferHashListString: " + SkipIndexBufferHashListString);
+                CheckBoxGenerateVertexShaderCheck.Checked = true;
+                TextBoxVertexShaderCheckSlots.Text = VertexShaderCheckSlotsString;
+                LogOutput("VertexShaderCheckSlots: " + VertexShaderCheckSlotsString);
+            }
+
+
+            string SkipIndexBufferHashListString = (string)configJsonObject["SkipIndexBufferHashList"];
+            if (string.IsNullOrEmpty(SkipIndexBufferHashListString))
+            {
+                CheckBoxSkipIndexBufferHashList.Checked = false;
             }
             else
             {
-                CheckBoxSkipIndexBufferHashList.Checked = false;
+                CheckBoxSkipIndexBufferHashList.Checked = true;
+                TextBoxSkipIndexBufferHashList.Text = SkipIndexBufferHashListString;
+                LogOutput("SkipIndexBufferHashListString: " + SkipIndexBufferHashListString);
             }
 
 
@@ -468,5 +458,118 @@ namespace _3DmigotoModStudio
         {
             initializeConfig();
         }
+
+        //Save to Config.json
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveConfigJson(defaultConfigPath);
+        }
+
+        public void saveConfigJson(string saveJsonPath)
+        {
+            //Reset all config from the GUI
+            ConfigAttributes saveConfigAttributes = new ConfigAttributes();
+            saveConfigAttributes.FrameAnalysisFolder = TextBoxFrameAnalysisFolder.Text;
+            saveConfigAttributes.LoaderFolder = TextBoxLoaderFolder.Text;
+            saveConfigAttributes.OutputFolder = TextBoxOutputFolder.Text;
+            saveConfigAttributes.DrawIndexBufferHash = TextBoxDrawIndexBufferHash.Text;
+            saveConfigAttributes.Engine = ComboBoxGameEngine.Text;
+            saveConfigAttributes.ModName = TextBoxModName.Text;
+            saveConfigAttributes.VertexShaderCheckSlots = TextBoxVertexShaderCheckSlots.Text;
+            saveConfigAttributes.SkipIndexBufferHashList = TextBoxSkipIndexBufferHashList.Text;
+            saveConfigAttributes.AnimationVertexShader = TextBoxAnimationVertexShaderHash.Text;
+            saveConfigAttributes.BlendDrawCategory = TextBoxBlendDrawCategory.Text;
+            saveConfigAttributes.BlendOriginalCategory = TextBoxBlendOriginalCategory.Text;
+            saveConfigAttributes.SetColor_rgb_R = TextBoxColorRGB_R.Text;
+            saveConfigAttributes.SetColor_rgb_G = TextBoxColorRGB_G.Text;
+            saveConfigAttributes.SetColor_rgb_B = TextBoxColorRGB_B.Text;
+            saveConfigAttributes.SetColor_rgb_A = TextBoxColorRGB_A.Text;
+            saveConfigAttributes.TextureDiffuseHash = TextBoxTextureDiffuseHash.Text;
+            saveConfigAttributes.TextureNormalHash = TextBoxTextureNormalHash.Text;
+            saveConfigAttributes.TextureLightmapHash = TextBoxTextureLightmapHash.Text;
+
+            //save d3d11 attributes
+
+            List<D3D11ElementAttributes> saveD3D11ElementAttributesList = new List<D3D11ElementAttributes>();
+            foreach (DataGridViewRow row in dataGridViewElementList.Rows)
+            {
+                if (!row.IsNewRow && row.Cells[0].Value != null)
+                {
+                    D3D11ElementAttributes saveD3D11ElementAttributes = new D3D11ElementAttributes();
+                    saveD3D11ElementAttributes.ElementOrder = int.Parse(row.Cells["ElementOrder"].Value.ToString());
+                    saveD3D11ElementAttributes.SemanticName = row.Cells["SemanticName"].Value.ToString();
+                    saveD3D11ElementAttributes.ExtractSemanticName = row.Cells["ExtractSemanticName"].Value.ToString();
+                    saveD3D11ElementAttributes.SemanticIndex = row.Cells["SemanticIndex"].Value.ToString();
+                    saveD3D11ElementAttributes.OutputSemanticIndex = row.Cells["OutputSemanticIndex"].Value.ToString();
+                    saveD3D11ElementAttributes.Format = row.Cells["Format"].Value.ToString();
+                    saveD3D11ElementAttributes.InputSlot = row.Cells["InputSlot"].Value.ToString();
+                    saveD3D11ElementAttributes.InputSlotClass = row.Cells["InputSlotClass"].Value.ToString();
+                    saveD3D11ElementAttributes.InstanceDataStepRate = row.Cells["InstanceDataStepRate"].Value.ToString();
+                    saveD3D11ElementAttributes.ByteWidth = int.Parse(row.Cells["ByteWidth"].Value.ToString());
+                    saveD3D11ElementAttributes.ExtractVertexBufferSlot = row.Cells["ExtractVertexBufferSlot"].Value.ToString();
+                    saveD3D11ElementAttributes.ExtractTopology = row.Cells["ExtractTopology"].Value.ToString();
+                    saveD3D11ElementAttributes.Category = row.Cells["Category"].Value.ToString();
+                    saveD3D11ElementAttributesList.Add(saveD3D11ElementAttributes);
+                }
+            }
+
+
+            if (!File.Exists(saveJsonPath))
+            {
+                //Create a Config.json at runPath.
+                File.Create(saveJsonPath).Close();
+            }
+            //Save all config to Config.json
+            JObject jsonObject = JObject.FromObject(saveConfigAttributes);
+
+            jsonObject["ElementList"] = JArray.FromObject(saveD3D11ElementAttributesList);
+            string jsonString = jsonObject.ToString();
+
+            File.WriteAllText(saveJsonPath, jsonString);
+
+            MessageBox.Show("Successfully save to " + saveJsonPath);
+
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Show open json file dialog
+            DialogResult result = saveFileDialogJson.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string selectedFilePath = saveFileDialogJson.FileName;
+                saveConfigJson(selectedFilePath);
+            }
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you want to save current config?", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                saveConfigJson(defaultConfigPath);
+                initializeConfig();
+            }
+            else if (result == DialogResult.No)
+            {
+                initializeConfig();
+            }
+        }
+
+        private void ButtonSelectLoaderFolder_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.Description = "Choose your LoaderFolder";
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string selectedFolder = folderBrowserDialog1.SelectedPath + "\\";
+
+                TextBoxLoaderFolder.Text = selectedFolder;
+            }
+        }
+
+
     }
 }
