@@ -12,11 +12,14 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using _3DmigotoModStudio.Configs;
 
 namespace _3DmigotoModStudio
 {
     public partial class Studio : Form
     {
+        List<D3D11ElementAttributes> D3D11ElementAttributesList;
+        ConfigAttributes configAttributes;
         public Studio()
         {
             InitializeComponent();
@@ -29,6 +32,12 @@ namespace _3DmigotoModStudio
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             this.Text = "3Dmigoto Mod Studio " + version.ToString();
             initializeConfig();
+            string runPath = Application.StartupPath.ToString() + "\\";
+            string defaultConfigPath = runPath + "config.json";
+            if (File.Exists(defaultConfigPath))
+            {
+                readAndSetConfig(defaultConfigPath);
+            }
         }
 
         //Log output info to RunOutputRichText
@@ -147,28 +156,31 @@ namespace _3DmigotoModStudio
             // clean all previous rows because we need a new config.
             dataGridViewElementList.Rows.Clear();
 
+            D3D11ElementAttributesList = new List<D3D11ElementAttributes>();
+
             // here can't use DataSource because we make sure we can modify it after we add it into 
             // dataGridView, if you try to use DataSource it can not be modified later.
             foreach (JObject obj in objectList)
             {
                 // we turn it to object first so we can easily add it into DataGridView
-                D3D11ElementClass element = obj.ToObject<D3D11ElementClass>();
+                D3D11ElementAttributes d3d11ElementAttributes = obj.ToObject<D3D11ElementAttributes>();
+                D3D11ElementAttributesList.Append(d3d11ElementAttributes);
 
                 dataGridViewElementList.Rows.Add(
-                    element.ElementOrder,
-                    element.SemanticName,
-                    element.ExtractSemanticName,
-                    element.SemanticIndex,
-                    element.OutputSemanticIndex,
-                    element.Format,
-                    element.InputSlot,
-                    element.InputSlotClass,
-                    element.InstanceDataStepRate,
-                    element.ByteWidth,
-                    element.ExtractVertexBufferSlot,
-                    element.ExtractTopology,
-                    element.Category
-                    );
+                    d3d11ElementAttributes.ElementOrder,
+                    d3d11ElementAttributes.SemanticName,
+                    d3d11ElementAttributes.ExtractSemanticName,
+                    d3d11ElementAttributes.SemanticIndex,
+                    d3d11ElementAttributes.OutputSemanticIndex,
+                    d3d11ElementAttributes.Format,
+                    d3d11ElementAttributes.InputSlot,
+                    d3d11ElementAttributes.InputSlotClass,
+                    d3d11ElementAttributes.InstanceDataStepRate,
+                    d3d11ElementAttributes.ByteWidth,
+                    d3d11ElementAttributes.ExtractVertexBufferSlot,
+                    d3d11ElementAttributes.ExtractTopology,
+                    d3d11ElementAttributes.Category
+                );
 
             }
 
@@ -204,36 +216,45 @@ namespace _3DmigotoModStudio
             LogOutput("ModName: " + ModName);
 
             bool GenerateVertexShaderCheck = (bool)configJsonObject["GenerateVertexShaderCheck"];
-            CheckBoxGenerateVertexShaderCheck.Checked = GenerateVertexShaderCheck;
             LogOutput("GenerateVertexShaderCheck: " + GenerateVertexShaderCheck);
 
             List<string> VertexShaderCheckSlots = configJsonObject["VertexShaderCheckSlots"].ToObject<List<string>>();
             string VertexShaderCheckSlotsString = "";
-            foreach (string checkSlot in VertexShaderCheckSlots)
+            if (VertexShaderCheckSlots.Count != 0)
             {
-                VertexShaderCheckSlotsString += checkSlot + ",";
+                CheckBoxGenerateVertexShaderCheck.Checked = true;
+                foreach (string checkSlot in VertexShaderCheckSlots)
+                {
+                    VertexShaderCheckSlotsString += checkSlot + ",";
+                }
+                VertexShaderCheckSlotsString = VertexShaderCheckSlotsString.Substring(0, VertexShaderCheckSlotsString.Length - 1);
+                TextBoxVertexShaderCheckSlots.Text = VertexShaderCheckSlotsString;
+                LogOutput("VertexShaderCheckSlots: " + VertexShaderCheckSlotsString);
             }
-            VertexShaderCheckSlotsString = VertexShaderCheckSlotsString.Substring(0, VertexShaderCheckSlotsString.Length - 1);
-            TextBoxVertexShaderCheckSlots.Text = VertexShaderCheckSlotsString;
-            LogOutput("VertexShaderCheckSlots: " + VertexShaderCheckSlotsString);
+            else
+            {
+                CheckBoxGenerateVertexShaderCheck.Checked = false;
+            }
+
 
             List<string> SkipIndexBufferHashList = configJsonObject["SkipIndexBufferHashList"].ToObject<List<string>>();
+            string SkipIndexBufferHashListString = "";
             if (SkipIndexBufferHashList.Count != 0)
             {
                 CheckBoxSkipIndexBufferHashList.Checked = true;
+                foreach (string skipIB in SkipIndexBufferHashList)
+                {
+                    SkipIndexBufferHashListString += skipIB + ",";
+                }
+                SkipIndexBufferHashListString = SkipIndexBufferHashListString.Substring(0, SkipIndexBufferHashListString.Length - 1);
+                TextBoxSkipIndexBufferHashList.Text = SkipIndexBufferHashListString;
+                LogOutput("SkipIndexBufferHashListString: " + SkipIndexBufferHashListString);
             }
             else
             {
                 CheckBoxSkipIndexBufferHashList.Checked = false;
             }
-            string SkipIndexBufferHashListString = "";
-            foreach (string skipIB in SkipIndexBufferHashList)
-            {
-                SkipIndexBufferHashListString += skipIB + ",";
-            }
-            SkipIndexBufferHashListString = SkipIndexBufferHashListString.Substring(0, SkipIndexBufferHashListString.Length - 1);
-            TextBoxSkipIndexBufferHashList.Text = SkipIndexBufferHashListString;
-            LogOutput("SkipIndexBufferHashListString: " + SkipIndexBufferHashListString);
+
 
             string AimationVertexShader = (string)configJsonObject["AimationVertexShader"];
             if (string.IsNullOrEmpty(AimationVertexShader))
@@ -360,7 +381,27 @@ namespace _3DmigotoModStudio
                 LogOutput("TextureLightmapHash: " + TextureLightmapHash);
             }
 
+            //set variable to use later in different class.
+            configAttributes = new ConfigAttributes();
 
+            configAttributes.FrameAnalysisFolder = FrameAnalysisFolder;
+            configAttributes.LoaderFolder = LoaderFolder;
+            configAttributes.OutputFolder = OutputFolder;
+            configAttributes.DrawIndexBufferHash = DrawIndexBufferHash;
+            configAttributes.Engine = Engine;
+            configAttributes.ModName = ModName;
+            configAttributes.VertexShaderCheckSlots = VertexShaderCheckSlotsString;
+            configAttributes.SkipIndexBufferHashList = SkipIndexBufferHashListString;
+            configAttributes.AnimationVertexShader = AimationVertexShader;
+            configAttributes.BlendDrawCategory = BlendDrawCategory;
+            configAttributes.BlendOriginalCategory = BlendOriginalCategory;
+            configAttributes.SetColor_rgb_R = SetColor_rgb_R;
+            configAttributes.SetColor_rgb_G = SetColor_rgb_G;
+            configAttributes.SetColor_rgb_B = SetColor_rgb_B;
+            configAttributes.SetColor_rgb_A = SetColor_rgb_A;
+            configAttributes.TextureDiffuseHash = TextureDiffuseHash;
+            configAttributes.TextureNormalHash = TextureNormalHash;
+            configAttributes.TextureLightmapHash = TextureLightmapHash;
         }
 
         private void CheckBoxGenerateVertexShaderCheck_CheckedChanged(object sender, EventArgs e)
