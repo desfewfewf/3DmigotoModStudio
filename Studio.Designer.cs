@@ -122,8 +122,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.moveIndexBufferRelatedFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.openFileDialogJson = new System.Windows.Forms.OpenFileDialog();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.menuStrip3 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -131,7 +131,7 @@
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.exportToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.openFileDialogJson = new System.Windows.Forms.OpenFileDialog();
             this.tabPage3.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.tabConfig.SuspendLayout();
@@ -434,6 +434,7 @@
             this.CheckBoxTextureLightmapHash.TabIndex = 8;
             this.CheckBoxTextureLightmapHash.Text = "Lightmap Hash";
             this.CheckBoxTextureLightmapHash.UseVisualStyleBackColor = true;
+            this.CheckBoxTextureLightmapHash.CheckedChanged += new System.EventHandler(this.CheckBoxTextureLightmapHash_CheckedChanged);
             // 
             // CheckBoxTextureNormalHash
             // 
@@ -444,6 +445,7 @@
             this.CheckBoxTextureNormalHash.TabIndex = 7;
             this.CheckBoxTextureNormalHash.Text = "Normal Hash";
             this.CheckBoxTextureNormalHash.UseVisualStyleBackColor = true;
+            this.CheckBoxTextureNormalHash.CheckedChanged += new System.EventHandler(this.CheckBoxTextureNormalHash_CheckedChanged);
             // 
             // CheckBoxTextureDiffuseHash
             // 
@@ -454,6 +456,7 @@
             this.CheckBoxTextureDiffuseHash.TabIndex = 6;
             this.CheckBoxTextureDiffuseHash.Text = "Diffuse Hash";
             this.CheckBoxTextureDiffuseHash.UseVisualStyleBackColor = true;
+            this.CheckBoxTextureDiffuseHash.CheckedChanged += new System.EventHandler(this.CheckBoxTextureDiffuseHash_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -512,6 +515,7 @@
             this.CheckBoxColorRGB_A.TabIndex = 13;
             this.CheckBoxColorRGB_A.Text = "Set Color rgba_A";
             this.CheckBoxColorRGB_A.UseVisualStyleBackColor = true;
+            this.CheckBoxColorRGB_A.CheckedChanged += new System.EventHandler(this.CheckBoxColorRGB_A_CheckedChanged);
             // 
             // TextBoxColorRGB_B
             // 
@@ -529,6 +533,7 @@
             this.CheckBoxColorRGB_B.TabIndex = 11;
             this.CheckBoxColorRGB_B.Text = "Set Color rgba_B";
             this.CheckBoxColorRGB_B.UseVisualStyleBackColor = true;
+            this.CheckBoxColorRGB_B.CheckedChanged += new System.EventHandler(this.CheckBoxColorRGB_B_CheckedChanged);
             // 
             // TextBoxColorRGB_G
             // 
@@ -546,6 +551,7 @@
             this.CheckBoxColorRGB_G.TabIndex = 9;
             this.CheckBoxColorRGB_G.Text = "Set Color rgba_G";
             this.CheckBoxColorRGB_G.UseVisualStyleBackColor = true;
+            this.CheckBoxColorRGB_G.CheckedChanged += new System.EventHandler(this.CheckBoxColorRGB_G_CheckedChanged);
             // 
             // ComboBoxTangentRecalculate
             // 
@@ -583,6 +589,7 @@
             this.CheckBoxColorRGB_R.TabIndex = 5;
             this.CheckBoxColorRGB_R.Text = "Set Color rgba_R";
             this.CheckBoxColorRGB_R.UseVisualStyleBackColor = true;
+            this.CheckBoxColorRGB_R.CheckedChanged += new System.EventHandler(this.CheckBoxColorRGB_R_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -628,6 +635,7 @@
             this.CheckBoxBlendOriginalCategory.TabIndex = 16;
             this.CheckBoxBlendOriginalCategory.Text = "Blend Original Category";
             this.CheckBoxBlendOriginalCategory.UseVisualStyleBackColor = true;
+            this.CheckBoxBlendOriginalCategory.CheckedChanged += new System.EventHandler(this.CheckBoxBlendOriginalCategory_CheckedChanged);
             // 
             // label6
             // 
@@ -647,6 +655,7 @@
             this.CheckBoxBlendDrawCategory.TabIndex = 15;
             this.CheckBoxBlendDrawCategory.Text = "Blend Draw Category";
             this.CheckBoxBlendDrawCategory.UseVisualStyleBackColor = true;
+            this.CheckBoxBlendDrawCategory.CheckedChanged += new System.EventHandler(this.CheckBoxBlendDrawCategory_CheckedChanged);
             // 
             // ComboBoxGameEngine
             // 
@@ -685,7 +694,7 @@
             this.CheckBoxGenerateVertexShaderCheck.TabIndex = 12;
             this.CheckBoxGenerateVertexShaderCheck.Text = "Generate Vertex Shader Check - Check Slots:";
             this.CheckBoxGenerateVertexShaderCheck.UseVisualStyleBackColor = true;
-            this.CheckBoxGenerateVertexShaderCheck.CheckedChanged += new System.EventHandler(this.checkBox12_CheckedChanged);
+            this.CheckBoxGenerateVertexShaderCheck.CheckedChanged += new System.EventHandler(this.CheckBoxGenerateVertexShaderCheck_CheckedChanged);
             // 
             // button2
             // 
@@ -702,7 +711,6 @@
             this.TextBoxBlendOriginalCategory.Name = "TextBoxBlendOriginalCategory";
             this.TextBoxBlendOriginalCategory.Size = new System.Drawing.Size(70, 20);
             this.TextBoxBlendOriginalCategory.TabIndex = 11;
-            this.TextBoxBlendOriginalCategory.TextChanged += new System.EventHandler(this.textBox16_TextChanged);
             // 
             // button1
             // 
@@ -753,6 +761,7 @@
             this.CheckBoxAnimationVertexShaderHash.TabIndex = 6;
             this.CheckBoxAnimationVertexShaderHash.Text = "Animation Vertex Shader Hash";
             this.CheckBoxAnimationVertexShaderHash.UseVisualStyleBackColor = true;
+            this.CheckBoxAnimationVertexShaderHash.CheckedChanged += new System.EventHandler(this.CheckBoxAnimationVertexShaderHash_CheckedChanged);
             // 
             // TextBoxFrameAnalysisFolder
             // 
@@ -787,6 +796,7 @@
             this.CheckBoxSkipIndexBufferHashList.TabIndex = 4;
             this.CheckBoxSkipIndexBufferHashList.Text = "Skip Index Buffer Hash List";
             this.CheckBoxSkipIndexBufferHashList.UseVisualStyleBackColor = true;
+            this.CheckBoxSkipIndexBufferHashList.CheckedChanged += new System.EventHandler(this.CheckBoxSkipIndexBufferHashList_CheckedChanged);
             // 
             // TextBoxOutputFolder
             // 
@@ -859,7 +869,6 @@
             this.RunOutputRichText.Size = new System.Drawing.Size(771, 344);
             this.RunOutputRichText.TabIndex = 0;
             this.RunOutputRichText.Text = "";
-            this.RunOutputRichText.TextChanged += new System.EventHandler(this.richTextBox3_TextChanged);
             // 
             // tabPage1
             // 
@@ -936,6 +945,7 @@
             this.cleanToolStripMenuItem.Name = "cleanToolStripMenuItem";
             this.cleanToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cleanToolStripMenuItem.Text = "Clean";
+            this.cleanToolStripMenuItem.Click += new System.EventHandler(this.cleanToolStripMenuItem_Click);
             // 
             // runToolStripMenuItem
             // 
@@ -1010,10 +1020,6 @@
             this.tabControl1.Size = new System.Drawing.Size(799, 432);
             this.tabControl1.TabIndex = 1;
             // 
-            // openFileDialogJson
-            // 
-            this.openFileDialogJson.Filter = "Json Configs|*.json";
-            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.richTextBox3);
@@ -1026,6 +1032,15 @@
             this.tabPage6.TabIndex = 4;
             this.tabPage6.Text = "ASM Analyzer";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox3
+            // 
+            this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox3.Location = new System.Drawing.Point(3, 27);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.Size = new System.Drawing.Size(785, 376);
+            this.richTextBox3.TabIndex = 1;
+            this.richTextBox3.Text = "";
             // 
             // menuStrip3
             // 
@@ -1050,45 +1065,39 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.fileToolStripMenuItem.Text = "File";
-            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem1
             // 
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
             this.openToolStripMenuItem1.Text = "Open";
             // 
             // saveToolStripMenuItem1
             // 
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
             this.saveToolStripMenuItem1.Text = "Save";
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.exportToolStripMenuItem.Text = "Save As...";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(123, 6);
             // 
             // exportToolStripMenuItem1
             // 
             this.exportToolStripMenuItem1.Name = "exportToolStripMenuItem1";
-            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
             this.exportToolStripMenuItem1.Text = "Export";
             // 
-            // richTextBox3
+            // openFileDialogJson
             // 
-            this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox3.Location = new System.Drawing.Point(3, 27);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(785, 376);
-            this.richTextBox3.TabIndex = 1;
-            this.richTextBox3.Text = "";
+            this.openFileDialogJson.Filter = "Json Configs|*.json";
             // 
             // Studio
             // 

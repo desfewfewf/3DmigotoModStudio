@@ -28,6 +28,7 @@ namespace _3DmigotoModStudio
             this.Icon = Properties.Resources.NicoLove;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             this.Text = "3Dmigoto Mod Studio " + version.ToString();
+            initializeConfig();
         }
 
         //Log output info to RunOutputRichText
@@ -62,8 +63,78 @@ namespace _3DmigotoModStudio
 
         }
 
+        public void initializeConfig()
+        {
+            dataGridViewElementList.Rows.Clear();
+
+            TextBoxLoaderFolder.Text = string.Empty;
+            TextBoxOutputFolder.Text = string.Empty;
+            TextBoxFrameAnalysisFolder.Text = string.Empty;
+
+            ComboBoxGameEngine.SelectedIndex = -1;
+
+            TextBoxDrawIndexBufferHash.Text = string.Empty;
+            TextBoxDrawIndexBufferHash.Enabled = false;
+
+            TextBoxModName.Text = string.Empty;
+            TextBoxModName.Enabled = false;
+
+            TextBoxVertexShaderCheckSlots.Text = string.Empty;
+            TextBoxVertexShaderCheckSlots.Enabled = false;
+            CheckBoxGenerateVertexShaderCheck.Checked = false;
+
+            TextBoxSkipIndexBufferHashList.Text = string.Empty;
+            TextBoxSkipIndexBufferHashList.Enabled = false;
+            CheckBoxSkipIndexBufferHashList.Checked = false;
+
+            TextBoxAnimationVertexShaderHash.Text = string.Empty;
+            TextBoxAnimationVertexShaderHash.Enabled = false;
+            CheckBoxAnimationVertexShaderHash.Checked = false;
+
+            TextBoxBlendDrawCategory.Text = string.Empty;
+            TextBoxBlendDrawCategory.Enabled = false;
+            CheckBoxBlendDrawCategory.Checked = false;
+
+            TextBoxBlendOriginalCategory.Text = string.Empty;
+            TextBoxBlendOriginalCategory.Enabled = false;
+            CheckBoxBlendOriginalCategory.Checked = false;
+        
+            TextBoxColorRGB_R.Text = string.Empty;
+            TextBoxColorRGB_R.Enabled = false;
+            CheckBoxColorRGB_R.Checked = false;
+
+            TextBoxColorRGB_G.Text = string.Empty;
+            TextBoxColorRGB_G.Enabled = false;
+            CheckBoxColorRGB_G.Checked = false;
+
+            TextBoxColorRGB_B.Text = string.Empty;
+            TextBoxColorRGB_B.Enabled = false;
+            CheckBoxColorRGB_B.Checked = false;
+
+            TextBoxColorRGB_A.Text = string.Empty;
+            TextBoxColorRGB_A.Enabled = false;
+            CheckBoxColorRGB_A.Checked = false;
+
+            TextBoxTextureDiffuseHash.Text = string.Empty;
+            TextBoxTextureDiffuseHash.Enabled = false;
+            CheckBoxTextureDiffuseHash.Checked = false;
+
+            TextBoxTextureNormalHash.Text = string.Empty;
+            TextBoxTextureNormalHash.Enabled = false;
+            CheckBoxTextureNormalHash.Checked = false;
+
+            TextBoxTextureLightmapHash.Text = string.Empty;
+            TextBoxTextureLightmapHash.Enabled = false;
+            CheckBoxTextureLightmapHash.Checked = false;
+
+
+        }
+
         public void readAndSetConfig(string jsonConfigFilePath)
         {
+            //we clean all config before we read a new one to make sure all UI work correctly.
+            initializeConfig();
+
             //read json file
             string configJson = File.ReadAllText(jsonConfigFilePath);
             //parse json file
@@ -292,30 +363,69 @@ namespace _3DmigotoModStudio
 
         }
 
-
-        private void textBox16_TextChanged(object sender, EventArgs e)
+        private void CheckBoxGenerateVertexShaderCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            TextBoxVertexShaderCheckSlots.Enabled = CheckBoxGenerateVertexShaderCheck.Checked;
         }
 
-        private void label8_Click(object sender, EventArgs e)
+        private void CheckBoxSkipIndexBufferHashList_CheckedChanged(object sender, EventArgs e)
         {
-
+            TextBoxSkipIndexBufferHashList.Enabled = CheckBoxSkipIndexBufferHashList.Checked;
         }
 
-        private void checkBox12_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAnimationVertexShaderHash_CheckedChanged(object sender, EventArgs e)
         {
-
+            TextBoxAnimationVertexShaderHash.Enabled = CheckBoxAnimationVertexShaderHash.Checked;
         }
 
-        private void richTextBox3_TextChanged(object sender, EventArgs e)
+        private void CheckBoxBlendDrawCategory_CheckedChanged(object sender, EventArgs e)
         {
-
+            TextBoxBlendDrawCategory.Enabled = CheckBoxBlendDrawCategory.Checked;
         }
 
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CheckBoxBlendOriginalCategory_CheckedChanged(object sender, EventArgs e)
         {
+            TextBoxBlendOriginalCategory.Enabled = CheckBoxBlendOriginalCategory.Checked;
+        }
 
+        private void CheckBoxColorRGB_R_CheckedChanged(object sender, EventArgs e)
+        {
+            TextBoxColorRGB_R.Enabled = CheckBoxColorRGB_R.Checked;
+        }
+
+        private void CheckBoxColorRGB_B_CheckedChanged(object sender, EventArgs e)
+        {
+            TextBoxColorRGB_B.Enabled = CheckBoxColorRGB_B.Checked;
+        }
+
+        private void CheckBoxColorRGB_G_CheckedChanged(object sender, EventArgs e)
+        {
+            TextBoxColorRGB_G.Enabled = CheckBoxColorRGB_G.Checked;
+        }
+
+        private void CheckBoxColorRGB_A_CheckedChanged(object sender, EventArgs e)
+        {
+            TextBoxColorRGB_A.Enabled = CheckBoxColorRGB_A.Checked;
+        }
+
+        private void CheckBoxTextureDiffuseHash_CheckedChanged(object sender, EventArgs e)
+        {
+            TextBoxTextureDiffuseHash.Enabled = CheckBoxTextureDiffuseHash.Checked;
+        }
+
+        private void CheckBoxTextureNormalHash_CheckedChanged(object sender, EventArgs e)
+        {
+            TextBoxTextureNormalHash.Enabled = CheckBoxTextureNormalHash.Checked;
+        }
+
+        private void CheckBoxTextureLightmapHash_CheckedChanged(object sender, EventArgs e)
+        {
+            TextBoxTextureLightmapHash.Enabled = CheckBoxTextureLightmapHash.Checked;
+        }
+
+        private void cleanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            initializeConfig();
         }
     }
 }
