@@ -30,14 +30,14 @@ namespace _3DmigotoModStudio
                 textColor = Color.Lime;
             }
             // log the length when we add ne content
-            int startPosition = RunOutputRichText.TextLength;
-            RunOutputRichText.AppendText(outputText);
-            RunOutputRichText.AppendText(Environment.NewLine);
+            int startPosition = RichTextRunOutput.TextLength;
+            RichTextRunOutput.AppendText(outputText);
+            RichTextRunOutput.AppendText(Environment.NewLine);
 
-            int endPosition = RunOutputRichText.TextLength;
+            int endPosition = RichTextRunOutput.TextLength;
 
-            RunOutputRichText.Select(startPosition, endPosition - startPosition);
-            RunOutputRichText.SelectionColor = textColor;
+            RichTextRunOutput.Select(startPosition, endPosition - startPosition);
+            RichTextRunOutput.SelectionColor = textColor;
         }
         public void readConfigIntoVariables()
         {

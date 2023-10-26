@@ -102,7 +102,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.TextBoxDrawIndexBufferHash = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.RunOutputRichText = new System.Windows.Forms.RichTextBox();
+            this.RichTextRunOutput = new System.Windows.Forms.RichTextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -852,7 +852,7 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.RunOutputRichText);
+            this.tabPage5.Controls.Add(this.RichTextRunOutput);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -861,17 +861,17 @@
             this.tabPage5.Text = "Run Output";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // RunOutputRichText
+            // RichTextRunOutput
             // 
-            this.RunOutputRichText.BackColor = System.Drawing.Color.Black;
-            this.RunOutputRichText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RunOutputRichText.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RunOutputRichText.ForeColor = System.Drawing.Color.Lime;
-            this.RunOutputRichText.Location = new System.Drawing.Point(3, 3);
-            this.RunOutputRichText.Name = "RunOutputRichText";
-            this.RunOutputRichText.Size = new System.Drawing.Size(771, 344);
-            this.RunOutputRichText.TabIndex = 0;
-            this.RunOutputRichText.Text = "";
+            this.RichTextRunOutput.BackColor = System.Drawing.Color.Black;
+            this.RichTextRunOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RichTextRunOutput.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RichTextRunOutput.ForeColor = System.Drawing.Color.Lime;
+            this.RichTextRunOutput.Location = new System.Drawing.Point(3, 3);
+            this.RichTextRunOutput.Name = "RichTextRunOutput";
+            this.RichTextRunOutput.Size = new System.Drawing.Size(771, 344);
+            this.RichTextRunOutput.TabIndex = 0;
+            this.RichTextRunOutput.Text = "";
             // 
             // tabPage1
             // 
@@ -1183,7 +1183,7 @@
         private System.Windows.Forms.ToolStripMenuItem tryExtractibvbFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem standardFormattingToolStripMenuItem;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.RichTextBox RunOutputRichText;
+        private System.Windows.Forms.RichTextBox RichTextRunOutput;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.DataGridView dataGridViewElementList;
         private System.Windows.Forms.OpenFileDialog openFileDialogJson;
