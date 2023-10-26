@@ -28,5 +28,6 @@ namespace _3DmigotoModStudio.Configs
         public string TextureNormalHash {  get; set; }
         public string TextureLightmapHash {  get; set; }
 
+
     }
 }

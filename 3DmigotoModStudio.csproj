@@ -98,6 +98,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Studio.ExtractModelUE4.Designer.cs" />
+    <Compile Include="Studio.ExtractModelUnity.Designer.cs" />
+    <Compile Include="Studio.GenerateMod.Designer.cs" />
+    <Compile Include="Studio.Functions.Designer.cs" />
     <EmbeddedResource Include="Studio.resx">
       <DependentUpon>Studio.cs</DependentUpon>
     </EmbeddedResource>

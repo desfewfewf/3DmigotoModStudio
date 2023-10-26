@@ -973,12 +973,14 @@
             this.extractModelToolStripMenuItem.Name = "extractModelToolStripMenuItem";
             this.extractModelToolStripMenuItem.Size = new System.Drawing.Size(333, 22);
             this.extractModelToolStripMenuItem.Text = "Extract Model";
+            this.extractModelToolStripMenuItem.Click += new System.EventHandler(this.extractModelToolStripMenuItem_Click);
             // 
             // generateModToolStripMenuItem
             // 
             this.generateModToolStripMenuItem.Name = "generateModToolStripMenuItem";
             this.generateModToolStripMenuItem.Size = new System.Drawing.Size(333, 22);
             this.generateModToolStripMenuItem.Text = "Generate Mod";
+            this.generateModToolStripMenuItem.Click += new System.EventHandler(this.generateModToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -1108,9 +1110,6 @@
             // saveFileDialogJson
             // 
             this.saveFileDialogJson.Filter = "Json Configs|*.json";
-            // 
-            // folderBrowserDialog1
-            // 
             // 
             // Studio
             // 

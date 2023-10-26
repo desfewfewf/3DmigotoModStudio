@@ -2,7 +2,6 @@
 
 A simple tool for 3Dmigoto Mod.
 
-
 # Acknowledgements
 Without the 3dmigoto repo this tool will be nothing. 
 

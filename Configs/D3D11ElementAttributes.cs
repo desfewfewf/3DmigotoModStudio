@@ -21,5 +21,7 @@ namespace _3DmigotoModStudio
         public string ExtractVertexBufferSlot {  get; set; }
         public string ExtractTopology {  get; set; }
         public string Category {  get; set; }
+
+
     }
 }
